@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ffe6e6;
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    #proposal-container {
+        margin-top: 100px;
+    }
+    #password-input {
+        margin-bottom: 40px;
+    }
+    #comments {
+        margin-top: 30px;
+        text-align: left;
+    }
+    h1 {
+        color: #cc0000;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    button {
+        background-color: #cc0000;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: text insertion;
+        transition: background-color 0.3s ease-in-out;
+    
+    }
+    button:hover {
+        background-color: #990000;
+    }
+    textarea {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 2px solid #cc0000;
+    }
+    .comment-box {
+        background-color: #fff;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .comment {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div id="proposal-container">
+    <h1>Enter Password to Proceed</h1>
+    <form id="password-form">
+        <input type="password" id="password-input" placeholder="Enter Password">
+        <button type="submit" cursor: text insertion;>Submit</cursor></button>
+        <p> HINT: FULL FORM OF 143 WITHOUT SPACE </p>
+    </form>
+</div>
+
+<script>
+    const correctPassword = "iloveyou";
+
+    document.getElementById("password-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const password = document.getElementById("password-input").value.trim();
+        
+        if (password.toLowerCase() === correctPassword) {
+            displayProposal();
+        } else {
+            document.getElementById("proposal-container").innerHTML = "<p style='color: red;' >Incorrect password please reload. Please try again.</p>";
+        }
+    });
+
+    function displayProposal() {
+        document.getElementById("proposal-container").innerHTML = `
+            <h1>I LOVE YOU BUTIE, DO YOU?</h1>
+            <button onclick="handleYes()">Yes I LOVE YOU</button>
+            <button onclick="handleNo()">No</button>
+        `;
+    }
+
+    function handleYes() {
+        document.getElementById("proposal-container").innerHTML = `
+            <p>Are you serious?</p>
+            <button onclick="handleAccept()">Yes</button>
+            <button onclick="handleReject()">No</button>
+        `;
+    }
+
+    function handleReject() {
+        document.getElementById("proposal-container").innerHTML = "<p style='color: #cc0000;'>No worries.</p>";
+        showComments();
+    }
+
+    function handleAccept() {
+        document.getElementById("proposal-container").innerHTML = `
+            <p>I have been admiring you for a while now and I believe it's time to express my feelings</p>. 
+             <p>  Your name truly reflects who you are, inside and out. </p>
+              <p>  You bring joy and happiness into my life and I am truly grateful for that.</p>
+            <p> I would be honored if you would consider sharing your life with me. </p>
+        <p>    Will you be my partner in all ups and downs ?</p>
+            <h2 style='color: #cc0000;'>I LOVE YOU TOO!</h2>
+        `;
+        showComments();
+    }
+
+    function handleNo() {
+        document.getElementById("proposal-container").innerHTML = "<p style='color: #cc0000;'>You are a liar.</p>";
+        showComments();
+    }
+
+    function showComments() {
+        document.getElementById("comments").innerHTML = `
+            <div class="comment-box">
+                <h2 style='color: #cc0000;'>Share Your Feelings:</h2>
+                <textarea id="comment-box" rows="4" cols="50" placeholder="Enter your comments..." style='margin-bottom: 10px;'></textarea>
+                <br>
+                <button onclick="submitComment()">Submit</button>
+            </div>
+        `;
+    }
+
+    function submitComment() {
+        const comment = document.getElementById("comment-box").value.trim();
+        if (comment !== "") {
+            document.getElementById("comments").innerHTML += `<div class="comment">${comment}</div>`;
+        }
+    }
+</script>
+
+<div id="comments"></div>
+
+</body>
+</html>
