@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div class="container">
+        <section id="home" data-aos="fade-up">
+            <div class="intro">
+                <h1 data-aos="zoom-in">Our Journey Together</h1>
+                <p data-aos="fade-up" data-aos-delay="300">Welcome to our love story</p>
+                <button onclick="scrollToSection('story')" data-aos="fade-up" data-aos-delay="600">Begin</button>
+            </div>
+        </section>
+        
+        <section id="story" data-aos="fade-up">
+            <h2>Our Story</h2>
+            <div class="timeline">
+                <div class="event" data-aos="fade-right">
+                    <h3>First Met</h3>
+                    <p>We first met on a sunny day in April 2015...</p>
+                </div>
+                <div class="event" data-aos="fade-left">
+                    <h3>First Date</h3>
+                    <p>Our first date was magical, we went to...</p>
+                </div>
+                <!-- Add more timeline events here -->
+            </div>
+        </section>
+        
+        <section id="gallery" data-aos="fade-up">
+            <h2>Photo Gallery</h2>
+            <div class="photos">
+                <img src="images/photo1.jpg" alt="Photo 1" data-aos="zoom-in">
+                <img src="images/photo2.jpg" alt="Photo 2" data-aos="zoom-in">
+                <!-- Add more photos here -->
+            </div>
+        </section>
+        
+        <section id="proposal" data-aos="fade-up">
+            <h2>The Proposal</h2>
+            <p>Will you marry me?</p>
+            <button onclick="showContactForm()">Yes!</button>
+        </section>
+        
+        <section id="contact" style="display:none;" data-aos="fade-up">
+            <h2>Contact</h2>
+            <form id="contact-form" action="submit_message.php" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message"></textarea>
+                <button type="submit">Send</button>
+            </form>
+            <?php
+            if (isset($_GET['status']) && $_GET['status'] == 'success') {
+                echo "<p>Thank you for your response!</p>";
+            }
+            ?>
+        </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
